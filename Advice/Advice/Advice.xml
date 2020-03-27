@@ -50,6 +50,12 @@
             <summary>
             Answers controller Class   /// </summary>
         </member>
+        <member name="M:Advice.Controllers.AnswersController.#ctor(AdviceLib.IRepository.IRepositoryAnswers{AdviceLib.Models.Answers1})">
+            <summary>
+            contstructor for Accounts Controller
+            </summary>
+            <param name="Acc"></param>
+        </member>
         <member name="M:Advice.Controllers.AnswersController.Get">
             <summary>
             get all answers
@@ -63,18 +69,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Advice.Controllers.AnswersController.Post(System.String)">
+        <member name="M:Advice.Controllers.AnswersController.Post(System.String,System.Int32)">
             <summary>
-            create new answers
+            Create answers based on id.
             </summary>
-            <param name="value"></param>
+            <param name="answer"></param>
+            <param name="id"></param>
         </member>
-        <member name="M:Advice.Controllers.AnswersController.Put(System.Int32,System.String)">
+        <member name="M:Advice.Controllers.AnswersController.Put(System.Int32,System.Int32,System.Int32)">
             <summary>
-            update answer by id
+            
             </summary>
             <param name="id"></param>
-            <param name="value"></param>
+            <param name="upvotes"></param>
+            <param name="visited"></param>
         </member>
         <member name="M:Advice.Controllers.AnswersController.Delete(System.Int32)">
             <summary>
@@ -85,6 +93,12 @@
         <member name="T:Advice.Controllers.QuestionsController">
             <summary>
             Question Controller Class  /// </summary>
+        </member>
+        <member name="M:Advice.Controllers.QuestionsController.#ctor(AdviceLib.IRepository.IRepositoryQuestions{AdviceLib.Models.Questions1})">
+            <summary>
+            contstructor for Accounts Controller
+            </summary>
+            <param name="Acc"></param>
         </member>
         <member name="M:Advice.Controllers.QuestionsController.Get">
             <summary>
@@ -97,18 +111,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Advice.Controllers.QuestionsController.Post(System.String)">
+        <member name="M:Advice.Controllers.QuestionsController.Post(System.String,System.Int32)">
             <summary>
-            create new answer
+            
             </summary>
-            <param name="value"></param>
+            <param name="Questions"></param>
+            <param name="id"></param>
         </member>
-        <member name="M:Advice.Controllers.QuestionsController.Put(System.Int32,System.String)">
+        <member name="M:Advice.Controllers.QuestionsController.Put(System.Int32,System.Int32,System.Int32)">
             <summary>
-            update answer by id
+            update upvotes and visited status
             </summary>
             <param name="id"></param>
-            <param name="value"></param>
+            <param name="upvotes"></param>s
+            <param name="visited"></param>
         </member>
         <member name="M:Advice.Controllers.QuestionsController.Delete(System.Int32)">
             <summary>

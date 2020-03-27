@@ -56,6 +56,13 @@ namespace AdviceLib.Repositories
             return getCx;
         }
 
+        public IEnumerable<Answers1> ReadInAnswersBasedOnQuestion(int q_id)
+        {
+            var getCx = from cx in ADC.Answers.OrderByDescending(e => e.Question_ID == q_id)
+                        select Mappings.MapAnswers.Map(cx);
+            return getCx;
+        }
+
         public void UpdateAnswers(Answers1 Answers)
         {
             if (ADC.Answers.Any(Cx => Cx.ID == Answers.ID))

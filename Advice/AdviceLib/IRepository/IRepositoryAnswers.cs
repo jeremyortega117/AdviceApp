@@ -9,6 +9,7 @@ namespace AdviceLib.IRepository
     {
         IEnumerable<T> ReadInAnswers();
         IEnumerable<T> ReadInAnswers(int id);
+        IEnumerable<T> ReadInAnswersBasedOnQuestion(int id);
         void CreateAnswers(T Answers);
         void UpdateAnswers(T Answers);
         void DeleteAnswers(int id);
