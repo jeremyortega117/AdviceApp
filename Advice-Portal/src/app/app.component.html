@@ -18,3 +18,37 @@
         <th>{{q.visited}}</th>
     </tr>
 </table>
+<hr>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Answers</th>
+        <th>question_ID</th>
+        <th>account_ID</th>
+        <th>upvotes</th>
+        <th>visited</th>
+    </tr>
+    <tr *ngFor="let a of listanswers">
+        <th>{{a.id}}</th>
+        <th>{{a.answers}}</th>
+        <th>{{a.question_ID}}</th>
+        <th>{{a.account_ID}}</th>
+        <th>{{a.upvotes}}</th>
+        <th>{{a.visited}}</th>
+    </tr>
+</table>
+<hr>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Password</th>
+    </tr>
+    <tr *ngFor="let a of listaccounts">
+        <th>{{a.id}}</th>
+        <th>{{a.email}}</th>
+        <th>{{a.username}}</th>
+        <th>{{a.password}}</th>
+    </tr>
+</table>
