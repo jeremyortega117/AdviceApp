@@ -1,1 +1,20 @@
 <h1>{{title}}</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Question</th>
+        <th>QuestionType</th>
+        <th>Account_ID</th>
+        <th>Upvotes</th>
+        <th>Visited</th>
+    </tr>
+    <tr *ngFor="let q of listquestions">
+        <th>{{q.id}}</th>
+        <th>{{q.question}}</th>
+        <th>{{q.account_ID}}</th>
+        <th>{{q.questionType}}</th>
+        <th>{{q.upvotes}}</th>
+        <th>{{q.visited}}</th>
+    </tr>
+</table>
