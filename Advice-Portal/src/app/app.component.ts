@@ -23,27 +23,52 @@ export class AppComponent {
   listquestions:Questions[];
   listanswers:Answers[];
   listaccounts:Accounts[];
+  objQuestion:Questions;
 
   ngOnInit(){
 
     this._ApiQuestions.getquestions()
-    .subscribe(
-      data=>{
-        this.listquestions = data;
-      }
-    );
-
-      this._ApiAnswers.getanswers()
       .subscribe(
-        data=>{
+        data => {
+          this.listquestions = data;
+        }
+      );
+
+    this._ApiQuestions.getquestionbyid()
+      .subscribe(
+        data => {
+          this.listquestions = data;
+        }
+      );
+
+    this._ApiAnswers.getanswers()
+      .subscribe(
+        data => {
           this.listanswers = data;
         }
       );
-      this._ApiAccounts.getaccounts()
+
+    this._ApiAccounts.getaccounts()
       .subscribe(
-        data=>{
+        data => {
           this.listaccounts = data;
         }
-      )
+      );
+
+    var oquestions = new Questions();
+
+    oquestions.account_ID = 4;
+    oquestions.question = 'how to make mac and cheese';
+    oquestions.questionType = 'cooking';
+    oquestions.upvotes = 0;
+    oquestions.visited = 0;
+
+    this._ApiQuestions.post(oquestions)
+    .subscribe(
+      data => {
+        this.objQuestion = data;
+      }
+    )
+
   }
 }
