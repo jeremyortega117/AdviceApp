@@ -58,7 +58,7 @@ export class AppComponent {
     var oquestions = new Questions();
 
     oquestions.account_ID = 4;
-    oquestions.question = 'how to make mac and cheese';
+    oquestions.question = 'test question';
     oquestions.questionType = 'cooking';
     oquestions.upvotes = 0;
     oquestions.visited = 0;
