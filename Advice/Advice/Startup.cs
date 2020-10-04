@@ -36,6 +36,7 @@ namespace Advice
         }
         // ----------------------------- Cors -----------------------------
         readonly string MyAllowSpecificationOrigins = "_myAllowSpecificOrigins";
+        // ----------------------------------------------------------------
 
         /// <summary>
         /// 
