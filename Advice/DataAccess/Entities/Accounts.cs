@@ -18,7 +18,8 @@ namespace DataAccess.Entities
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-
+        public int mediaTableId { get; set }
+        
         public virtual ICollection<Answers> Answers { get; set; }
         public virtual ICollection<Questions> Questions { get; set; }
     }

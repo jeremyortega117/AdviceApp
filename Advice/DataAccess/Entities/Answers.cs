@@ -8,15 +8,16 @@ namespace DataAccess.Entities
 {
     public class Answers
     {
+        /// <summary>
+        /// An Answer should be aware of the answer including any supporting documents.
+        /// It would be nice to have upvotes and visited columns for statistical analysis.
+        /// </summary>
         [Key]
         public int ID { get; set; }
-        public string Answers_ { get; set; }
-        public int? Question_ID { get; set; }
-        public int? Account_ID { get; set; }
+        public string Answer { get; set; }
+        public int? AnswerDocID { get; set; }
         public int Upvotes { get; set; }
         public int Visited { get; set; }
-
-        public virtual Questions Questions { get; set; }
-        public virtual Accounts Accounts{ get; set; }
+        public int AnswerDocs { get; set; }
     }
 }

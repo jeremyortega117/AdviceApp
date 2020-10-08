@@ -19,6 +19,56 @@ namespace Advice.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+
+            modelBuilder.Entity("DataAccess.Entities.Accounts", b =>
+            {
+                b.Property<int>("ID")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("Email")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(100)")
+                    .HasMaxLength(100);
+
+                b.Property<string>("Password")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(100)")
+                    .HasMaxLength(100);
+
+                b.Property<string>("Username")
+                    .HasColumnType("nvarchar(max)");
+
+                b.HasKey("ID");
+
+                b.ToTable("Accounts");
+
+                b.HasData(
+                    new
+                    {
+                        ID = 1,
+                        Email = "greg@mail.com",
+                        Password = "pass@word",
+                        Username = "gregory"
+                    },
+                    new
+                    {
+                        ID = 2,
+                        Email = "paul@mail.com",
+                        Password = "pass@word1",
+                        Username = "paul"
+                    },
+                    new
+                    {
+                        ID = 3,
+                        Email = "samantha@mail.com",
+                        Password = "pass@word2",
+                        Username = "samantha"
+                    });
+            });
+
+
             modelBuilder.Entity("DataAccess.Entities.Accounts", b =>
                 {
                     b.Property<int>("ID")
@@ -81,6 +131,9 @@ namespace Advice.Migrations
                     b.Property<string>("Answers_")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Answer_Docs")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int?>("Question_ID")
                         .IsRequired()
