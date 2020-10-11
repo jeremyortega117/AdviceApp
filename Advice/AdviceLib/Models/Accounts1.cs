@@ -7,8 +7,13 @@ namespace AdviceLib.Models
     public class Accounts1
     {
         public int ID { get; set; }
-        public string Email { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string FNAME { get; set; }
+        public string LNAME { get; set; }
+        public string PASSWORD { get; set; }
+        public int ACCESS_LEVEL { get; set; }
+        public string EMAIL { get; set; }
+        public string PHONE { get; set; }
+        public string USERNAME { get; set; }
+        public int DEPT_ID { get; set; }
     }
 }

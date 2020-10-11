@@ -16,15 +16,15 @@ namespace AdviceLib.Repositories
         public RepositoryAccounts()
         {
             ADC = new AdviceDbContext();
-        }        
+        }
         public RepositoryAccounts(AdviceDbContext AD)
         {
             ADC = AD ?? throw new ArgumentNullException(nameof(AD));
-        }   
+        }
 
         public void CreateAccounts(Accounts1 accounts)
         {
-            if (ADC.Accounts.Any(c => c.Email == accounts.Email) || accounts.Email == null)
+            if (ADC.Accounts.Any((System.Linq.Expressions.Expression<Func<DataAccess.Entities.Accounts, bool>>)(c => c.Email == accounts.Email)) || accounts.Email == null)
             {
                 Console.WriteLine($"This account with email {accounts.Email} already exists and cannot be added");
                 return;
@@ -81,9 +81,15 @@ namespace AdviceLib.Repositories
         {
             if (ADC.Accounts.Any(Cx => Cx.ID == Accounts.ID))
             {
-                var Cus = ADC.Accounts.FirstOrDefault(Cx => Cx.ID == Accounts.ID);
-                Cus.Username = Accounts.Username;
-                Cus.Email = Accounts.Email;
+                var Cus = ADC.Accounts.FirstOrDefault((Cx => Cx.ID == Accounts.ID));
+                Cus.USERNAME = Accounts.USERNAME;
+                Cus.EMAIL = Accounts.EMAIL;
+                Cus.FNAME = Accounts.FNAME;
+                Cus.LNAME = Accounts.LNAME;
+                Cus.PHONE = Accounts.PHONE;
+                Cus.DEPT_ID = Accounts.DEPT_ID;
+                Cus.ACCESS_LEVEL = Accounts.ACCESS_LEVEL;
+                Cus.PASSWORD = Accounts.PASSWORD;
                 ADC.Accounts.Update(Cus);
                 ADC.SaveChanges();
             }

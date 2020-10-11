@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 using DataAccess;
 using AdviceLib.IRepository;
 using AdviceLib.Models;
-using AdviceLib.Repositories;
+
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
@@ -41,7 +41,7 @@ namespace Advice
         /// <summary>
         /// 
         /// </summary>
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration;
 
         /// <summary>
         /// 
@@ -87,13 +87,17 @@ namespace Advice
             });
             // -----------------------------------------------------
 
-            // needed in order to use EF Core using a connection string.  Creates a Database Context to allow for code first migrations.
-            services.AddDbContext<AdviceDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("AdviceDbConnection"), b => b.MigrationsAssembly("Advice")));
+            string connectionString = Configuration.GetConnectionString("AdviceDbConnection");
 
-            services.AddTransient<IRepositoryAccounts<Accounts1>, RepositoryAccounts>();
-            services.AddTransient<IRepositoryAnswers<Answers1>, RepositoryAnswers>();
-            services.AddTransient<IRepositoryQuestions<Questions1>, RepositoryQuestions>();
+            services.AddDbContext<AdviceDbContext>(options => options.UseSqlServer(connectionString));
+
+            // needed in order to use EF Core using a connection string.  Creates a Database Context to allow for code first migrations.
+            ///services.AddDbContext<AdviceDbContext>( //AdviceDbContext
+               /// options => options.UseSqlServer(Configuration.GetConnectionString("AdviceDbConnection"), b => b.MigrationsAssembly("Advice")));
+
+            //services.AddTransient<IRepositoryAccounts<Accounts1>, RepositoryAccounts>();
+            //services.AddTransient<IRepositoryAnswers<Answers1>, RepositoryAnswers>();
+            //services.AddTransient<IRepositoryQuestions<Questions1>, RepositoryQuestions>();
             services.AddControllers();
         }
 

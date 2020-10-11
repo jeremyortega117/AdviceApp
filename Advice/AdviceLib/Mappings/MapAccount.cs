@@ -5,16 +5,21 @@ using System.Text;
 
 namespace AdviceLib.Mappings
 {
-    class MapAccount
+    public class MapAccount
     {
         public static Accounts1 Map(DataAccess.Entities.Accounts AX)
         {
             return new Accounts1()
             {
                 ID = AX.ID,
-                Email = AX.Email,
-                Username = AX.Username,
-                Password = AX.Password
+                FNAME = AX.FNAME,
+                LNAME = AX.LNAME,
+                PASSWORD = AX.PASSWORD,
+                ACCESS_LEVEL = AX.ACCESS_LEVEL,
+                EMAIL = AX.EMAIL,
+                PHONE = AX.PHONE,
+                USERNAME = AX.USERNAME,
+                DEPT_ID = AX.DEPT_ID
             };
         }
 
@@ -23,9 +28,14 @@ namespace AdviceLib.Mappings
             return new DataAccess.Entities.Accounts()
             {
                 ID = AX.ID,
-                Email = AX.Email,
-                Username = AX.Username,
-                Password = AX.Password
+                FNAME = AX.FNAME,
+                LNAME = AX.LNAME,
+                PASSWORD = AX.PASSWORD,
+                ACCESS_LEVEL = AX.ACCESS_LEVEL,
+                EMAIL = AX.EMAIL,
+                PHONE = AX.PHONE,
+                USERNAME = AX.USERNAME,
+                DEPT_ID = AX.DEPT_ID
             };
         }
     }

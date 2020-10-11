@@ -1,6 +1,7 @@
 ﻿using System;
 using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DataAccess
 {
@@ -11,130 +12,112 @@ namespace DataAccess
     /// </summary>
     public partial class AdviceDbContext : DbContext
     {
+
+        public AdviceDbContext() { }
+
         public AdviceDbContext(DbContextOptions<AdviceDbContext> options) : base(options)
         {
 
         }
-        public AdviceDbContext() { }
 
         /// <summary>
         /// Created DBSet's to create tables based on entities/models.
         /// </summary>
         public virtual DbSet<Accounts> Accounts { get; set; }
-        public virtual DbSet<Answers> Answers { get; set; }
-        public virtual DbSet<Questions> Questions { get; set; }
+        public virtual DbSet<Departments> Departments { get; set; }
+        public virtual DbSet<Conversations> Conversations { get; set; }
+        public virtual DbSet<Messages> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+            /* Departments */
+            modelBuilder.Entity<Departments>(entity =>
+            {
+                entity.HasKey(e => e.ID);
+                entity.Property(e => e.DEPT_NAME)
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.Property(e => e.DEPT_ACCESS)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
+
+            /* Accounts */
             modelBuilder.Entity<Accounts>(entity =>
             {
                 entity.HasKey(e => e.ID);
-                entity.Property(e => e.Email)
+                entity.Property(e => e.FNAME)
                     .IsRequired()
                     .HasMaxLength(100);
-                entity.Property(e => e.Username);
-                entity.Property(e => e.Password)
+                entity.Property(e => e.LNAME)
                     .IsRequired()
                     .HasMaxLength(100);
-                /* Created these entity elements for a foreign key/Primary
-                 * Key relationship.  
-                 * Example: 
-                 *      entity.HasMany => // Accounts has many questions
-                 *      .WithOne => // the questions has one Account
-                 */
-                entity.HasMany(e => e.Questions)
-                    .WithOne(e => e.Accounts)
-                    .HasForeignKey(e => e.Account_ID)
+                entity.Property(e => e.PASSWORD)
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.Property(e => e.ACCESS_LEVEL)
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.Property(e => e.EMAIL)
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.Property(e => e.PHONE)
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.Property(e => e.USERNAME)
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.Property(e => e.DEPT_ID)
+                    .IsRequired();
+                entity.HasOne(e => e.Departments)
+                    .WithMany(e => e.Accounts)
+                    .HasForeignKey(e => e.DEPT_ID)
+                    .HasConstraintName("FK_Review_Department")
                     .OnDelete(DeleteBehavior.ClientSetNull);
-                entity.HasMany(e => e.Answers)
-                    .WithOne(e => e.Accounts)
-                    .HasForeignKey(e => e.Account_ID)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-                /* Create seed data */
-                entity.HasData(new Accounts[]{
-                    new Accounts()
-                    {
-                        ID = 1,
-                        Email = "greg@mail.com",
-                        Username = "gregory",
-                        Password = "pass@word"
-                    },
-                    new Accounts()
-                    {
-                        ID = 2,
-                        Email = "paul@mail.com",
-                        Username = "paul",
-                        Password = "pass@word1"
-                    },
-                    new Accounts()
-                    {
-                        ID = 3,
-                        Email = "samantha@mail.com",
-                        Username = "samantha",
-                        Password = "pass@word2"
-                    }
-                });
-            });
-            modelBuilder.Entity<Answers>(entity =>
-            {
-                entity.HasKey(e => e.ID);
-                entity.Property(e => e.Answers_)
-                      .IsRequired();
-                entity.Property(e => e.Question_ID)
-                      .IsRequired()
-                      .HasMaxLength(1000);
-                entity.Property(e => e.Account_ID)
-                      .IsRequired();
-                entity.Property(e => e.Upvotes);
-                entity.Property(e => e.Visited);
-                entity.HasData(new Answers[]
-                {
-                    new Answers()
-                    {
-                        ID = 1,
-                        Question_ID = 1,
-                        Answers_ = "butter the outside of two pieces of bread and place a slice of cheese in the middle and cook on stove for 3 minutes on each side.",
-                        Account_ID = 1
-                    },
-                    new Answers()
-                    {
-                        ID = 2,
-                        Question_ID = 1,
-                        Answers_ = "Place PB and Jelly in between two pieces of bread.",
-                        Account_ID = 3,
-                    }
-                });
             });
 
-            modelBuilder.Entity<Questions>(entity =>
+
+            modelBuilder.Entity<Messages>(entity =>
             {
                 entity.HasKey(e => e.ID);
-                entity.Property(e => e.Question);
-                entity.Property(e => e.QuestionType);
-                entity.Property(e => e.Account_ID);
-                entity.Property(e => e.Upvotes);
-                entity.Property(e => e.Visited);
-                entity.HasMany(e => e.Answers)
-                    .WithOne(e => e.Questions)
-                    .HasForeignKey(e => e.Question_ID)
+                entity.Property(e => e.CONVERSATION_ID);
+                entity.Property(e => e.DEPT_ID);
+                entity.Property(e => e.ACCOUNT_ID);
+                entity.Property(e => e.DATE_MADE);
+                entity.Property(e => e.MESSAGE);
+                entity.Property(e => e.MESSAGE_TYPE);
+                entity.Property(e => e.KEYWORDS);
+                entity.Property(e => e.UPVOTES);
+                entity.Property(e => e.VIEWS);
+                entity.Property(e => e.READ_ACCESS);
+                entity.Property(e => e.WRITE_ACCESS);
+                entity.HasOne(e => e.Accounts)
+                    .WithMany(e => e.Messages)
+                    .HasForeignKey(e => e.ACCOUNT_ID) 
                     .OnDelete(DeleteBehavior.ClientSetNull);
-                entity.HasData(new Questions[] {
-                    new Questions()
-                    {
-                        ID = 1,
-                        Question = "How to make grilled cheese",
-                        QuestionType = "cooking",
-                        Account_ID = 1
-                    },
-                    new Questions()
-                    {
-                        ID = 2,
-                        Question = "How to make PB&J",
-                        QuestionType = "cooking",
-                        Account_ID = 1
-                    }
-                });
+                entity.HasOne(e => e.Conversations)
+                    .WithMany(e => e.Messages)
+                    .HasForeignKey(e => e.CONVERSATION_ID)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(e => e.Departments)
+                    .WithMany(e => e.Messages)
+                    .HasForeignKey(e => e.DEPT_ID)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
+
+
+            modelBuilder.Entity<Conversations>(entity =>
+            {
+                entity.HasKey(e => e.ID);
+                entity.Property(e => e.ACCOUNT_ID);
+                entity.Property(e => e.CONVERSATION_TYPE);
+                entity.Property(e => e.DEPT_ID);
+                entity.Property(e => e.ACCESS_LEVEL);
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
