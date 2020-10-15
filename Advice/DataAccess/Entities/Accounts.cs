@@ -14,7 +14,7 @@ namespace DataAccess.Entities
         public Accounts()
         {
             Conversations = new HashSet<Conversations>();
-            //Messages = new HashSet<Messages>();
+            Messages = new HashSet<Messages>();
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace DataAccess.Entities
         /// relationship
         /// </summary>
         public virtual ICollection<Conversations> Conversations { get; set; }
-        //public virtual ICollection<Messages> Messages { get; set; }
+        public virtual ICollection<Messages> Messages { get; set; }
 
         /// <summary>
         /// Represents this table's foreign key to the Department Table's ID. 

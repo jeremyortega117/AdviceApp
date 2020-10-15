@@ -28,9 +28,9 @@ namespace DataAccess.Entities
         public int READ_ACCESS { get; set; }
         public int WRITE_ACCESS { get; set; }
 
-        //public Conversations Conversations { get; set; }
-        //public Departments Departments { get; set; }
-        //public Accounts Accounts { get; set; }
+        public Conversations Conversations { get; set; }
+        public Departments Departments { get; set; }
+        public Accounts Accounts { get; set; }
 
     }
 }

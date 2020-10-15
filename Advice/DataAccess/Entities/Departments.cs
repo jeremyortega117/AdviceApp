@@ -11,7 +11,7 @@ namespace DataAccess.Entities
         public Departments()
         {
             Accounts = new HashSet<Accounts>();
-            //Messages = new HashSet<Messages>();
+            Messages = new HashSet<Messages>();
         }
         [Key]
         public int ID { get; set; }
@@ -19,7 +19,7 @@ namespace DataAccess.Entities
         public int DEPT_ACCESS { get; set; }
 
         public virtual ICollection<Accounts> Accounts { get; set; }
-        //public virtual ICollection<Messages> Messages { get; set; }
+        public virtual ICollection<Messages> Messages { get; set; }
     }
 }
 

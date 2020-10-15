@@ -185,18 +185,18 @@ namespace DataAccess
                 entity.Property(e => e.READ_ACCESS);
                 entity.Property(e => e.WRITE_ACCESS);
 
-                //entity.HasOne(e => e.Accounts)
-                //    .WithMany(e => e.Messages)
-                //    .HasForeignKey(e => e.ACCOUNT_ID)
-                //    .OnDelete(DeleteBehavior.ClientSetNull);
-                //entity.HasOne(e => e.Conversations)
-                //    .WithMany(e => e.Messages)
-                //    .HasForeignKey(e => e.CONVERSATION_ID)
-                //    .OnDelete(DeleteBehavior.ClientSetNull);
-                //entity.HasOne(e => e.Departments)
-                //    .WithMany(e => e.Messages)
-                //    .HasForeignKey(e => e.DEPT_ID)
-                //    .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(e => e.Accounts)
+                    .WithMany(e => e.Messages)
+                    .HasForeignKey(e => e.ACCOUNT_ID)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(e => e.Conversations)
+                    .WithMany(e => e.Messages)
+                    .HasForeignKey(e => e.CONVERSATION_ID)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+                entity.HasOne(e => e.Departments)
+                    .WithMany(e => e.Messages)
+                    .HasForeignKey(e => e.DEPT_ID)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
 
                 //entity.HasData(
                 //    new
