@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DataAccess.Entities
@@ -10,12 +11,11 @@ namespace DataAccess.Entities
         /// <summary>
         /// We need to instantiate the HashSets used to represent the "HasOne" "ToMany" relationship.
         /// </summary>
-        //public Accounts()
-        //{
-        //    Conversations = new HashSet<Conversations>();
-        //    Messages = new HashSet<Messages>();
-
-        //}
+        public Accounts()
+        {
+            Conversations = new HashSet<Conversations>();
+            //Messages = new HashSet<Messages>();
+        }
 
         /// <summary>
         /// Primary Key Annotation
@@ -29,7 +29,7 @@ namespace DataAccess.Entities
         public string EMAIL { get; set; }
         public string PHONE { get; set; }
         public string USERNAME { get; set; }
-        public int DEPT_ID { get; set; }
+        public int? DEPT_ID { get; set; }
 
         /// <summary>
         /// Represents other table's foreign keys to this table, that also represent a 
@@ -37,12 +37,13 @@ namespace DataAccess.Entities
         /// "ToMany" (Conversations)
         /// relationship
         /// </summary>
-        //public virtual ICollection<Conversations> Conversations { get; set; }
+        public virtual ICollection<Conversations> Conversations { get; set; }
         //public virtual ICollection<Messages> Messages { get; set; }
 
-        ///// <summary>
-        ///// Represents this table's foreign key to the Department Table's ID. 
-        ///// </summary>
-        //public virtual Departments Departments { get; set; }
+        /// <summary>
+        /// Represents this table's foreign key to the Department Table's ID. 
+        /// </summary>
+        [ForeignKey("DEPT_ID")]
+        public virtual Departments Departments { get; set; }
     }
 }

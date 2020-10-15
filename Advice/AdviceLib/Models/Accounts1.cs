@@ -16,6 +16,6 @@ namespace AdviceLib.Models
         public string EMAIL { get; set; }
         public string PHONE { get; set; }
         public string USERNAME { get; set; }
-        public int DEPT_ID { get; set; }
+        public int? DEPT_ID { get; set; }
     }
 }

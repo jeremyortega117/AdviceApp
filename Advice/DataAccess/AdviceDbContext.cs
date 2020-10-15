@@ -89,9 +89,10 @@ namespace DataAccess
                 entity.Property(e => e.DEPT_ID)
                     .IsRequired();
 
-                //entity.HasOne(e => e.Departments)
-                //    .WithMany(e => e.Accounts)
-                //    .HasForeignKey(e => e.DEPT_ID);
+                entity.HasOne(e => e.Departments)
+                    .WithMany(e => e.Accounts)
+                    .HasForeignKey(e => e.DEPT_ID);
+                
 
                 //entity.HasData(
                 //    new
@@ -130,18 +131,13 @@ namespace DataAccess
                 entity.Property(e => e.CONVERSATION_TYPE)
                     .IsRequired()
                     .HasMaxLength(100);
-                entity.Property(e => e.DEPT_ID)
-                    .IsRequired();
                 entity.Property(e => e.ACCESS_LEVEL)
                     .IsRequired();
 
+                entity.HasOne(e => e.Accounts)
+                    .WithMany(e => e.Conversations)
+                    .HasForeignKey(e => e.ACCOUNT_ID);
 
-                //entity.HasOne(e => e.Accounts)
-                //    .WithMany(e => e.Conversations)
-                //    .HasForeignKey(e => e.ACCOUNT_ID);
-                //entity.HasOne(e => e.Departments)
-                //    .WithMany(e => e.Conversations)
-                //    .HasForeignKey(e => e.DEPT_ID);
 
                 //entity.HasData(
                 //    new

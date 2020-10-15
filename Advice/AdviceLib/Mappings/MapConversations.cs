@@ -14,7 +14,6 @@ namespace AdviceLib.Mappings
                 ID = AX.ID,
                 ACCOUNT_ID = AX.ACCOUNT_ID,
                 CONVERSATION_TYPE = AX.CONVERSATION_TYPE,
-                DEPT_ID = AX.DEPT_ID,
                 ACCESS_LEVEL = AX.ACCESS_LEVEL
             };
         }
@@ -26,7 +25,6 @@ namespace AdviceLib.Mappings
                 ID = AX.ID,
                 ACCOUNT_ID = AX.ACCOUNT_ID,
                 CONVERSATION_TYPE = AX.CONVERSATION_TYPE,
-                DEPT_ID = AX.DEPT_ID,
                 ACCESS_LEVEL = AX.ACCESS_LEVEL
             };
         }

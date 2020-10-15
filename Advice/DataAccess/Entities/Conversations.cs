@@ -13,14 +13,13 @@ namespace DataAccess.Entities
         //}
         [Key]
         public int ID { get; set; }
-        public int ACCOUNT_ID { get; set; }        
+        public int? ACCOUNT_ID { get; set; }        
         public int CONVERSATION_TYPE { get; set; }
-        public int DEPT_ID { get; set; }
         public int ACCESS_LEVEL { get; set; }
 
         //public virtual ICollection<Messages> Messages { get; set; }
 
-        //public Accounts Accounts { get; set; }
-        //public Departments Departments { get; set; }
+        public Accounts Accounts { get; set; }
+
     }
 }

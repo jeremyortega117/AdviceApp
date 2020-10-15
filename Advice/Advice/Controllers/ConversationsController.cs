@@ -68,7 +68,6 @@ namespace Advice.Controllers
             Conversations1 a = new Conversations1();
             a.ACCOUNT_ID = AccountId;
             a.CONVERSATION_TYPE = ConversationType;
-            a.DEPT_ID = DeptId;
             a.ACCESS_LEVEL = AccessLevel;
             CONV.CreateConversation(a);
         }
@@ -91,7 +90,6 @@ namespace Advice.Controllers
             Conversations1 CON = new Conversations1();
             CON.ACCOUNT_ID = AccountId;
             CON.CONVERSATION_TYPE = ConversationType;
-            CON.DEPT_ID = DeptId;
             CON.ACCESS_LEVEL = AccessLevel;
             CONV.UpdateConversation(CON);
         }
