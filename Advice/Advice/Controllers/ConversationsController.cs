@@ -16,7 +16,7 @@ namespace Advice.Controllers
     public class ConversationsController : ControllerBase
     {
 
-        private readonly IRepositoryConversations<Conversations1> CONV;
+        private IRepositoryConversations<Conversations1> CONV;
 
         /// <summary>
         /// contstructor for Conversations Controller

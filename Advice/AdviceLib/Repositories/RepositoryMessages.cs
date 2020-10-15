@@ -27,8 +27,8 @@ namespace AdviceLib.Repositories
         /// <param name="Messages"></param>
         public void CreateMessage(Messages1 Messages)
         {
-            //          ADC.Messages.Add(Mappings.MapMessages.Map(Messages));
-            ADC.SaveChanges();
+            ADC.Messages.Add(Mappings.MapMessages.Map(Messages));
+            //ADC.SaveChanges();
         }
 
         /// <summary>

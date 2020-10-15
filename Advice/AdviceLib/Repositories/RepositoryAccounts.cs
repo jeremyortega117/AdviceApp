@@ -28,7 +28,7 @@ namespace AdviceLib.Repositories
         /// <param name="accounts"></param>
         public void CreateAccount(Accounts1 accounts)
         {
-            if (ADC.Accounts.Any(a => a.EMAIL == accounts.EMAIL) || accounts.EMAIL != null)
+            if (ADC.Accounts.Any(a => a.EMAIL == accounts.EMAIL))
             {
                 Console.WriteLine($"This account with email {accounts.EMAIL} already exists and cannot be added");
                 return;

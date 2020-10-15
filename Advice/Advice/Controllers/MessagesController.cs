@@ -16,7 +16,7 @@ namespace Advice.Controllers
     public class MessagesController : ControllerBase
     {
 
-        private readonly IRepositoryMessages<Messages1> MSG;
+        private IRepositoryMessages<Messages1> MSG;
 
         /// <summary>
         /// contstructor for Accounts Controller

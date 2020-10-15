@@ -16,7 +16,7 @@ namespace Advice.Controllers
     public class DepartmentsController : ControllerBase
     {
 
-        private readonly IRepositoryDepartments<Departments1> Dept;
+        private IRepositoryDepartments<Departments1> Dept;
 
         /// <summary>
         /// contstructor for Department Controller

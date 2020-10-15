@@ -28,7 +28,7 @@ namespace AdviceLib.Repositories
         /// <param name="Departments"></param>
         public void CreateDepartment(Departments1 Departments)
         {
-            if (ADC.Departments.Any(d => d.DEPT_NAME == Departments.DEPT_NAME) || Departments.DEPT_NAME != null)
+            if (ADC.Departments.Any(d => d.DEPT_NAME == Departments.DEPT_NAME))
             {
                 Console.WriteLine($"This Department {Departments.DEPT_NAME} already exists and cannot be added");
                 return;

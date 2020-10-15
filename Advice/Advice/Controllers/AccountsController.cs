@@ -19,7 +19,7 @@ namespace Advice.Controllers
     public class AccountsController : ControllerBase
     {
 
-        private readonly IRepositoryAccounts<Accounts1> ACC;
+        private IRepositoryAccounts<Accounts1> ACC;
 
         /// <summary>
         /// contstructor for Accounts Controller
