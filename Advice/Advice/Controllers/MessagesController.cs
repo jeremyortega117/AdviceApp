@@ -24,7 +24,7 @@ namespace Advice.Controllers
         /// <param name="Acc"></param>
         public MessagesController(IRepositoryMessages<Messages1> MSG)
         {
-            MSG = MSG;
+            this.MSG = MSG;
         }
 
         /// <summary>

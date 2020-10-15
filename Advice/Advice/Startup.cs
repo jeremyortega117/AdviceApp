@@ -99,7 +99,7 @@ namespace Advice
             services.AddTransient<IRepositoryAccounts<Accounts1>, RepositoryAccounts>();
             services.AddTransient<IRepositoryConversations<Conversations1>, RepositoryConversations>();
             services.AddTransient<IRepositoryDepartments<Departments1>, RepositoryDepartments>();
-            //services.AddTransient<IRepositoryMessages<Messages1>, RepositoryMessages>();
+            services.AddTransient<IRepositoryMessages<Messages1>, RepositoryMessages>();
             services.AddControllers();
         }
 

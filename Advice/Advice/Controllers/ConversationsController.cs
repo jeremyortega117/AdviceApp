@@ -61,7 +61,6 @@ namespace Advice.Controllers
         [HttpPost]
         public void Post(int AccountId,
                          int ConversationType,
-                         int DeptId,
                          int AccessLevel
                         )
         {
@@ -83,7 +82,6 @@ namespace Advice.Controllers
         [HttpPut("{id}")]
         public void Put(int AccountId,
                          int ConversationType,
-                         int DeptId,
                          int AccessLevel
                         )
         {
