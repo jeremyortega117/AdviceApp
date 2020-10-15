@@ -11,7 +11,6 @@ namespace AdviceLib.Mappings
         {
             return new Accounts1()
             {
-                ID = AX.ID,
                 FNAME = AX.FNAME,
                 LNAME = AX.LNAME,
                 PASSWORD = AX.PASSWORD,
@@ -27,7 +26,6 @@ namespace AdviceLib.Mappings
         {
             return new DataAccess.Entities.Accounts()
             {
-                ID = AX.ID,
                 FNAME = AX.FNAME,
                 LNAME = AX.LNAME,
                 PASSWORD = AX.PASSWORD,

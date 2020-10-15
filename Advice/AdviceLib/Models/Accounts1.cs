@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace AdviceLib.Models
 {
     public class Accounts1
     {
+        [Key]
         public int ID { get; set; }
         public string FNAME { get; set; }
         public string LNAME { get; set; }

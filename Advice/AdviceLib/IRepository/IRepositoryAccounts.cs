@@ -8,9 +8,9 @@ namespace AdviceLib.IRepository
     public interface IRepositoryAccounts<T>
     {
         IEnumerable<T> ReadInAccounts();
-        T ReadInAccounts(int id);
-        void CreateAccounts(T Accounts);
-        void UpdateAccounts(T Accounts);
-        void DeleteAccounts(int id);
+        T ReadInAccount(int id);
+        void CreateAccount(T Accounts);
+        void UpdateAccount(T Accounts);
+        void DeleteAccount(int id);
     }
 }

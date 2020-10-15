@@ -8,9 +8,9 @@ namespace DataAccess.Entities
     public class Messages
     {
 
-        public Messages()
-        {
-        }
+        //public Messages()
+        //{
+        //}
 
         [Key]
         public int ID { get; set; }
@@ -28,9 +28,9 @@ namespace DataAccess.Entities
         public int READ_ACCESS { get; set; }
         public int WRITE_ACCESS { get; set; }
 
-        public Conversations Conversations { get; set; }
-        public Departments Departments { get; set; }
-        public Accounts Accounts { get; set; }
+        //public Conversations Conversations { get; set; }
+        //public Departments Departments { get; set; }
+        //public Accounts Accounts { get; set; }
 
     }
 }

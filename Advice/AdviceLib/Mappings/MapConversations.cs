@@ -5,7 +5,7 @@ using AdviceLib.Models;
 
 namespace AdviceLib.Mappings
 {
-    public class Conversations
+    public class MapConversations
     {
         public static Conversations1 Map(DataAccess.Entities.Conversations AX)
         {

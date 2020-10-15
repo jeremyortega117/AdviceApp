@@ -18,6 +18,7 @@ using AdviceLib.Models;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
+using AdviceLib.Repositories;
 
 namespace Advice
 {
@@ -95,9 +96,10 @@ namespace Advice
             ///services.AddDbContext<AdviceDbContext>( //AdviceDbContext
                /// options => options.UseSqlServer(Configuration.GetConnectionString("AdviceDbConnection"), b => b.MigrationsAssembly("Advice")));
 
-            //services.AddTransient<IRepositoryAccounts<Accounts1>, RepositoryAccounts>();
-            //services.AddTransient<IRepositoryAnswers<Answers1>, RepositoryAnswers>();
-            //services.AddTransient<IRepositoryQuestions<Questions1>, RepositoryQuestions>();
+            services.AddTransient<IRepositoryAccounts<Accounts1>, RepositoryAccounts>();
+            services.AddTransient<IRepositoryConversations<Conversations1>, RepositoryConversations>();
+            services.AddTransient<IRepositoryDepartments<Departments1>, RepositoryDepartments>();
+            //services.AddTransient<IRepositoryMessages<Messages1>, RepositoryMessages>();
             services.AddControllers();
         }
 

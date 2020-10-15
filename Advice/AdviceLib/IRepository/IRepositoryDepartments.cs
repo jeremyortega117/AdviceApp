@@ -9,8 +9,8 @@ namespace AdviceLib.IRepository
     {
         IEnumerable<T> ReadInDepartments();
         T ReadInDepartment(int id);
-        void CreateDepartments(T Departments);
-        void UpdateDepartments(T Departments);
-        void DeleteDepartments(int id);
+        void CreateDepartment(T Departments);
+        void UpdateDepartment(T Departments);
+        void DeleteDepartment(int id);
     }
 }

@@ -4,12 +4,12 @@ using System.Text;
 
 namespace AdviceLib.IRepository
 {
-    interface IRepositoryConversations<T>
+    public interface IRepositoryConversations<T>
     {
         IEnumerable<T> ReadInConversations();
-        T ReadInConversations(int id);
-        void CreateConversations(T Conversations);
-        void UpdateConversations(T Conversations);
-        void DeleteConversations(int id);
+        T ReadInConversation(int id);
+        void CreateConversation(T Conversations);
+        void UpdateConversation(T Conversations);
+        void DeleteConversation(int id);
     }
 }

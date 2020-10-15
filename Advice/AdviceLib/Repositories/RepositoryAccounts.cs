@@ -11,7 +11,7 @@ namespace AdviceLib.Repositories
 {
     public class RepositoryAccounts : IRepositoryAccounts<Accounts1>
     {
-        private AdviceDbContext ADC;
+        public AdviceDbContext ADC;
 
         public RepositoryAccounts()
         {
@@ -19,14 +19,18 @@ namespace AdviceLib.Repositories
         }
         public RepositoryAccounts(AdviceDbContext AD)
         {
-            ADC = AD ?? throw new ArgumentNullException(nameof(AD));
+            ADC = AD;
         }
 
-        public void CreateAccounts(Accounts1 accounts)
+        /// <summary>
+        /// Create new account
+        /// </summary>
+        /// <param name="accounts"></param>
+        public void CreateAccount(Accounts1 accounts)
         {
-            if (ADC.Accounts.Any((System.Linq.Expressions.Expression<Func<DataAccess.Entities.Accounts, bool>>)(c => c.Email == accounts.Email)) || accounts.Email == null)
+            if (ADC.Accounts.Any(a => a.EMAIL == accounts.EMAIL) || accounts.EMAIL != null)
             {
-                Console.WriteLine($"This account with email {accounts.Email} already exists and cannot be added");
+                Console.WriteLine($"This account with email {accounts.EMAIL} already exists and cannot be added");
                 return;
             }
             else
@@ -34,7 +38,11 @@ namespace AdviceLib.Repositories
             ADC.SaveChanges();
         }
 
-        public void DeleteAccounts(int id)
+        /// <summary>
+        /// delete account by id
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteAccount(int id)
         {
             var Cus = ADC.Accounts.FirstOrDefault(Cx => Cx.ID == id);
             if (Cus.ID == id)
@@ -66,7 +74,7 @@ namespace AdviceLib.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Accounts1 ReadInAccounts(int id)
+        public Accounts1 ReadInAccount(int id)
         {
             var a = ADC.Accounts.FirstOrDefault(a => a.ID == id);
             if (a != null)
@@ -76,8 +84,11 @@ namespace AdviceLib.Repositories
             return null;
         }
 
-
-        public void UpdateAccounts(Accounts1 Accounts)
+        /// <summary>
+        /// Update accounts.
+        /// </summary>
+        /// <param name="Accounts"></param>
+        public void UpdateAccount(Accounts1 Accounts)
         {
             if (ADC.Accounts.Any(Cx => Cx.ID == Accounts.ID))
             {

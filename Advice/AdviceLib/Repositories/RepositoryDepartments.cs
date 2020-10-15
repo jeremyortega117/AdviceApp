@@ -22,13 +22,27 @@ namespace AdviceLib.Repositories
             ADC = AD ?? throw new ArgumentNullException(nameof(AD));
         }
 
-        public void CreateDepartments(Departments1 Departments)
+        /// <summary>
+        /// Create new Department
+        /// </summary>
+        /// <param name="Departments"></param>
+        public void CreateDepartment(Departments1 Departments)
         {
-            ADC.Departments.Add(Mappings.MapDepartments.Map(Departments));// this will generate insertMapper.Map(Departments)
+            if (ADC.Departments.Any(d => d.DEPT_NAME == Departments.DEPT_NAME) || Departments.DEPT_NAME != null)
+            {
+                Console.WriteLine($"This Department {Departments.DEPT_NAME} already exists and cannot be added");
+                return;
+            }
+            else
+                ADC.Departments.Add(MapDepartments.Map(Departments));// this will generate insertMapper.Map(Departments)
             ADC.SaveChanges();// this will execute the above generate insert query
         }
 
-        public void DeleteDepartments(int id)
+        /// <summary>
+        ///  delete apartment by id
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteDepartment(int id)
         {
             var Cus = ADC.Departments.FirstOrDefault(Cx => Cx.ID == id);
             if (Cus.ID == id)
@@ -43,21 +57,33 @@ namespace AdviceLib.Repositories
             }
         }
 
+        /// <summary>
+        /// Read in all apartments
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Departments1> ReadInDepartments()
         {
             var getCx = from cx in ADC.Departments
-                        select Mappings.MapDepartments.Map(cx);
+                        select MapDepartments.Map(cx);
             return getCx;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Departments1 ReadInDepartment(int id)
         {
-            var getCx = ADC.Departments.FirstOrDefault(e => e.ID == id);
-                        
+            var getCx = ADC.Departments.FirstOrDefault(e => e.ID == id);                       
             return MapDepartments.Map(getCx);
         }
 
-        public void UpdateDepartments(Departments1 Departments)
+        /// <summary>
+        /// Update apartment
+        /// </summary>
+        /// <param name="Departments"></param>
+        public void UpdateDepartment(Departments1 Departments)
         {
             if (ADC.Departments.Any(Cx => Cx.ID == Departments.ID))
             {

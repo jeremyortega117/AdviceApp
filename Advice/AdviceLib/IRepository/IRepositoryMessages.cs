@@ -7,9 +7,9 @@ namespace AdviceLib.IRepository
     public interface IRepositoryMessages<T>
     {
         IEnumerable<T> ReadInMessages();
-        T ReadInMessages(int id);
-        void CreateMessages(T Messages);
-        void UpdateMessages(T Messages);
-        void DeleteMessages(int id);
+        T ReadInMessage(int id);
+        void CreateMessage(T Messages);
+        void UpdateMessage(T Messages);
+        void DeleteMessage(int id);
     }
 }
