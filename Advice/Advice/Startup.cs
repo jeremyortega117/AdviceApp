@@ -14,11 +14,12 @@ using Microsoft.Extensions.Logging;
 using DataAccess;
 using AdviceLib.IRepository;
 using AdviceLib.Models;
-
+using Serilog;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
 using AdviceLib.Repositories;
+using Serilog.Events;
 
 namespace Advice
 {
@@ -129,6 +130,14 @@ namespace Advice
             }
 
             app.UseHttpsRedirection();
+
+            // --------------------- Serilog ------------------------
+            app.UseSerilogRequestLogging();
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File("log.txt")
+                .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+                .CreateLogger();
+            // ------------------------------------------------------
 
             app.UseStaticFiles();
 
