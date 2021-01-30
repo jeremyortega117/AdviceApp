@@ -55,7 +55,6 @@ namespace Advice.Controllers
         /// </summary>
         /// <param name="AccountId"></param>
         /// <param name="ConversationType"></param>
-        /// <param name="DeptId"></param>
         /// <param name="AccessLevel"></param>
         // POST: api/ControllerConversations
         [HttpPost]
@@ -76,7 +75,6 @@ namespace Advice.Controllers
         /// </summary>
         /// <param name="AccountId"></param>
         /// <param name="ConversationType"></param>
-        /// <param name="DeptId"></param>
         /// <param name="AccessLevel"></param>
         // PUT: api/ControllerConversations/5
         [HttpPut("{id}")]

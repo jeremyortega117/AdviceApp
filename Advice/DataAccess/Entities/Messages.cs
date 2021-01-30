@@ -7,11 +7,6 @@ namespace DataAccess.Entities
 {
     public class Messages
     {
-
-        //public Messages()
-        //{
-        //}
-
         [Key]
         public int ID { get; set; }
         public int CONVERSATION_ID { get; set; }

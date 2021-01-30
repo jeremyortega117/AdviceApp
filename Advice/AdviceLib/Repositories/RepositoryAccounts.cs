@@ -9,6 +9,10 @@ using System.Text;
 
 namespace AdviceLib.Repositories
 {
+    /// <summary>
+    /// This Repository Handles the Business Rules and error handling of data before sending to and retriving data
+    /// from the database.
+    /// </summary>
     public class RepositoryAccounts : IRepositoryAccounts<Accounts1>
     {
         public AdviceDbContext ADC;
@@ -28,13 +32,13 @@ namespace AdviceLib.Repositories
         /// <param name="accounts"></param>
         public void CreateAccount(Accounts1 accounts)
         {
-            if (ADC.Accounts.Any(a => a.EMAIL == accounts.EMAIL))
+            if (!ChecksAndBalances(accounts))
             {
-                Console.WriteLine($"This account with email {accounts.EMAIL} already exists and cannot be added");
+                Console.WriteLine($"An Error occured trying to add a new account information.");
                 return;
             }
-            else
-                ADC.Accounts.Add(Mappings.MapAccount.Map(accounts));
+            // Add the account records.
+            ADC.Accounts.Add(Mappings.MapAccount.Map(accounts));
             ADC.SaveChanges();
         }
 
@@ -69,6 +73,26 @@ namespace AdviceLib.Repositories
             return getAx;
         }
 
+
+        /// <summary>
+        /// return all accounts from by Department ID.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Accounts1> ReadInAccountsByDepartments(int DEPTID)
+        {
+            var getAx = from ax in ADC.Accounts 
+                        where ax.DEPT_ID == DEPTID
+                        select Mappings.MapAccount.Map(ax);
+
+            if(getAx == null)
+            {
+                Console.WriteLine($"No Department exists with this ID.");
+                return null;
+            }
+            return getAx;
+        }
+
+
         /// <summary>
         /// return single account from repostory with matching id
         /// </summary>
@@ -90,6 +114,11 @@ namespace AdviceLib.Repositories
         /// <param name="Accounts"></param>
         public void UpdateAccount(Accounts1 Accounts)
         {
+            if (!ChecksAndBalances(Accounts))
+            {
+                Console.WriteLine($"An Error occured trying to add a new account information.");
+                return;
+            }
             if (ADC.Accounts.Any(Cx => Cx.ID == Accounts.ID))
             {
                 var Cus = ADC.Accounts.FirstOrDefault((Cx => Cx.ID == Accounts.ID));
@@ -104,6 +133,43 @@ namespace AdviceLib.Repositories
                 ADC.Accounts.Update(Cus);
                 ADC.SaveChanges();
             }
+        }
+
+        /// <summary>
+        /// Check that [department] already exists.
+        /// Check that [email], [fname, lname, username], [phone] doesn't exist.
+        /// </summary>
+        /// <param name="accounts"></param>
+        /// <returns></returns>
+        public bool ChecksAndBalances(Accounts1 accounts)
+        {
+            // check if an email already exists.  If so don't allow another account to be made using that email.
+            if (ADC.Accounts.Any(a => a.EMAIL == accounts.EMAIL))
+            {
+                Console.WriteLine($"This account with email {accounts.EMAIL} already exists and cannot be added");
+                return false;
+            }
+            // check if an phone already exists.  If so don't allow another account to be made using that phone.
+            else if (ADC.Accounts.Any(a => a.PHONE == accounts.PHONE))
+            {
+                Console.WriteLine($"An account with phone number {accounts.PHONE} already exists.");
+                return false;
+            }
+            // check if a fname, lname, username combination already exists.  If so don't allow another account to be made that combination.
+            else if (ADC.Accounts.Any(a => a.FNAME == accounts.FNAME &&
+                                           a.LNAME == accounts.LNAME &&
+                                           a.USERNAME == accounts.USERNAME))
+            {
+                Console.WriteLine($"This firstname, lastname and username combination already exists and cannot be added.");
+                return false;
+            }
+            // If that department doesn't exist then don't try and add.
+            else if (!ADC.Departments.Any(d => d.ID == accounts.DEPT_ID))
+            {
+                Console.WriteLine($"No Departments Exist matching {accounts.DEPT_ID}");
+                return false;
+            }
+            return true;
         }
     }
 }

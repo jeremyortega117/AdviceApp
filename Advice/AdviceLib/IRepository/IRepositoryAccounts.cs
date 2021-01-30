@@ -9,6 +9,7 @@ namespace AdviceLib.IRepository
     {
         IEnumerable<T> ReadInAccounts();
         T ReadInAccount(int id);
+        T ReadInAccountsByDepartments(int id);
         void CreateAccount(T Accounts);
         void UpdateAccount(T Accounts);
         void DeleteAccount(int id);

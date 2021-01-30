@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Advice.Controllers
 {
     /// <summary>
-    /// Controller class for Accounts
+    /// This Controller class directly retrives and sends data to and from the front end via url input and primarily. 
+    /// sends and retrieves the data to and from the like repository.
     /// This can be found on localhost:<12356>/api/Accounts
     /// </summary>
     [Route("api/[controller]")]
@@ -54,7 +55,7 @@ namespace Advice.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Insert new Account
         /// </summary>
         /// <param name="FNAME"></param>
         /// <param name="LNAME"></param>

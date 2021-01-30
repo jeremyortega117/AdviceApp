@@ -19,3 +19,4 @@ namespace AdviceLib.Models
         public int? DEPT_ID { get; set; }
     }
 }
+  

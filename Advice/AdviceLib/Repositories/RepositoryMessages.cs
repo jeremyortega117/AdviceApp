@@ -8,6 +8,10 @@ using System.Text;
 
 namespace AdviceLib.Repositories
 {
+    /// <summary>
+    /// This Repository Handles the Business Rules and error handling of data before sending to and retriving data
+    /// from the database.
+    /// </summary>
     public class RepositoryMessages : IRepositoryMessages<Messages1>
     {
         public AdviceDbContext ADC;

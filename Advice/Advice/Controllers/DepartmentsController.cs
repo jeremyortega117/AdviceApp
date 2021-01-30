@@ -51,6 +51,18 @@ namespace Advice.Controllers
         }
 
         /// <summary>
+        /// get Departments by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        // GET: api/ControllerDepartments/5
+        [HttpGet("{id}")]
+        public Departments1 Get(int id)
+        {
+            return Dept.ReadInDepartment(id);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="DepName"></param>

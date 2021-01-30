@@ -9,6 +9,10 @@ using System.Text;
 
 namespace AdviceLib.Repositories
 {
+    /// <summary>
+    /// This Repository Handles the Business Rules and error handling of data before sending to and retriving data
+    /// from the database.
+    /// </summary>
     public class RepositoryConversations : IRepositoryConversations<Conversations1>
     {
         AdviceDbContext ADC;
@@ -50,11 +54,41 @@ namespace AdviceLib.Repositories
             return getCx;
         }
 
-        public Conversations1 ReadInConversation(int id)
+
+        public Conversations1 ReadInConversationByAccountID(int id)
         {
             var getCx = ADC.Conversations.FirstOrDefault(e => e.ID == id);
             return MapConversations.Map(getCx);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ConvType"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public IEnumerable<Conversations1> ReadInConversationByConversationType(
+            int ConvType,
+            string username,
+            string password
+            )
+        {
+            var user = ADC.Accounts.FirstOrDefault(e => e.USERNAME == username && e.PASSWORD == password);
+
+            if(user == null)
+            {
+                Console.WriteLine($"Cx with username and password combination doesn't exist");
+                return null;
+            }
+
+            var getCx = from cx in ADC.Conversations
+                        where cx.CONVERSATION_TYPE == ConvType
+                        where cx.ACCESS_LEVEL >= user.ACCESS_LEVEL
+                        select MapConversations.Map(cx);
+            return getCx;
+        }
+
 
         public void UpdateConversation(Conversations1 Conversation)
         {
