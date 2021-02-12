@@ -6,11 +6,11 @@ namespace AdviceLib.IRepository
 {
     public interface IRepositoryConversations<T>
     {
+        void CreateConversation(T Conversation);
         IEnumerable<T> ReadInConversations();
-        T ReadInConversationByAccountID(int id);
-        T ReadInConversationByDeptID(int id);
-        void CreateConversation(T Conversations);
-        void UpdateConversation(T Conversations);
-        void DeleteConversation(int id);
+        IEnumerable<T> ReadInConversationsByAccountID(int id);
+        IEnumerable<T> ReadInConversationByConversationID(int id);
+        void UpdateConversation(T Conversation);
+        void DeleteConversationByID(int id);
     }
 }

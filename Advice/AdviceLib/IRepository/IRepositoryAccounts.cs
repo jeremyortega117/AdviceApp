@@ -7,11 +7,11 @@ namespace AdviceLib.IRepository
 {
     public interface IRepositoryAccounts<T>
     {
-        IEnumerable<T> ReadInAccounts();
-        T ReadInAccount(int id);
-        T ReadInAccountsByDepartments(int id);
         void CreateAccount(T Accounts);
+        IEnumerable<T> ReadInAccounts();
+        T ReadInAccountByID(int id);
+        IEnumerable<T> ReadInAccountsByDEPTID(int id);
         void UpdateAccount(T Accounts);
-        void DeleteAccount(int id);
+        void DeleteAccountByID(int id);
     }
 }

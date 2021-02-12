@@ -43,25 +43,6 @@ namespace AdviceLib.Repositories
         }
 
         /// <summary>
-        /// delete account by id
-        /// </summary>
-        /// <param name="id"></param>
-        public void DeleteAccount(int id)
-        {
-            var Cus = ADC.Accounts.FirstOrDefault(Cx => Cx.ID == id);
-            if (Cus.ID == id)
-            {
-                ADC.Remove(Cus);
-                ADC.SaveChanges();
-            }
-            else
-            {
-                Console.WriteLine($"Cx with id {id} doesn't exist");
-                return;
-            }
-        }
-
-        /// <summary>
         /// return all accounts from repository call.
         /// </summary>
         /// <returns></returns>
@@ -78,13 +59,13 @@ namespace AdviceLib.Repositories
         /// return all accounts from by Department ID.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Accounts1> ReadInAccountsByDepartments(int DEPTID)
+        public IEnumerable<Accounts1> ReadInAccountsByDEPTID(int DEPTID)
         {
-            var getAx = from ax in ADC.Accounts 
+            var getAx = from ax in ADC.Accounts
                         where ax.DEPT_ID == DEPTID
                         select Mappings.MapAccount.Map(ax);
 
-            if(getAx == null)
+            if (getAx == null)
             {
                 Console.WriteLine($"No Department exists with this ID.");
                 return null;
@@ -98,7 +79,7 @@ namespace AdviceLib.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Accounts1 ReadInAccount(int id)
+        public Accounts1 ReadInAccountByID(int id)
         {
             var a = ADC.Accounts.FirstOrDefault(a => a.ID == id);
             if (a != null)
@@ -107,6 +88,7 @@ namespace AdviceLib.Repositories
             }
             return null;
         }
+
 
         /// <summary>
         /// Update accounts.
@@ -135,13 +117,34 @@ namespace AdviceLib.Repositories
             }
         }
 
+
+        /// <summary>
+        /// delete account by id
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteAccountByID(int id)
+        {
+            var Cus = ADC.Accounts.FirstOrDefault(Cx => Cx.ID == id);
+            if (Cus.ID == id)
+            {
+                ADC.Remove(Cus);
+                ADC.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine($"Cx with id {id} doesn't exist");
+                return;
+            }
+        }
+
+
         /// <summary>
         /// Check that [department] already exists.
         /// Check that [email], [fname, lname, username], [phone] doesn't exist.
         /// </summary>
         /// <param name="accounts"></param>
         /// <returns></returns>
-        public bool ChecksAndBalances(Accounts1 accounts)
+        private bool ChecksAndBalances(Accounts1 accounts)
         {
             // check if an email already exists.  If so don't allow another account to be made using that email.
             if (ADC.Accounts.Any(a => a.EMAIL == accounts.EMAIL))

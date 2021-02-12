@@ -45,9 +45,9 @@ namespace Advice.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public Conversations1 Get(int id)
+        public IEnumerable<Conversations1> Get(int id)
         {
-            return CONV.ReadInConversation(id);
+            return CONV.ReadInConversationByConversationID(id);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Advice.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            CONV.DeleteConversation(id);
+            CONV.DeleteConversationByID(id);
         }
 
     }

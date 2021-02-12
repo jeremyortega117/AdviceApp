@@ -32,21 +32,10 @@ namespace AdviceLib.Repositories
             ADC.SaveChanges();// this will execute the above generate insert query
         }
 
-        public void DeleteConversation(int id)
-        {
-            var Cus = ADC.Conversations.FirstOrDefault(Cx => Cx.ID == id);
-            if (Cus.ID == id)
-            {
-                ADC.Remove(Cus);
-                ADC.SaveChanges();
-            }
-            else
-            {
-                Console.WriteLine($"Cx with id {id} doesn't exist");
-                return;
-            }
-        }
-
+        /// <summary>
+        /// Read In all conversations.  This may primarily be useful for auditing purposes.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Conversations1> ReadInConversations()
         {
             var getCx = from cx in ADC.Conversations
@@ -55,14 +44,34 @@ namespace AdviceLib.Repositories
         }
 
 
-        public Conversations1 ReadInConversationByAccountID(int id)
+        /// <summary>
+        /// Read in all conversations associated with that user id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<Conversations1> ReadInConversationsByAccountID(int id)
         {
-            var getCx = ADC.Conversations.FirstOrDefault(e => e.ID == id);
-            return MapConversations.Map(getCx);
+            var getCx = from cx in ADC.Conversations
+                        where cx.ACCOUNT_ID == id
+                        select MapConversations.Map(cx);
+            return getCx;
         }
 
         /// <summary>
-        /// 
+        /// Read in all conversations associated with that DEPTID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<Conversations1> ReadInConversationByConversationID(int id)
+        {
+            var getCx = from cx in ADC.Conversations
+                        where cx.ID == id
+                        select MapConversations.Map(cx);
+            return getCx;
+        }
+
+        /// <summary>
+        /// Check Access level of user and allow that user to only see messages with that level of access.
         /// </summary>
         /// <param name="ConvType"></param>
         /// <param name="username"></param>
@@ -84,12 +93,16 @@ namespace AdviceLib.Repositories
 
             var getCx = from cx in ADC.Conversations
                         where cx.CONVERSATION_TYPE == ConvType
-                        where cx.ACCESS_LEVEL >= user.ACCESS_LEVEL
+                        where cx.ACCESS_LEVEL <= user.ACCESS_LEVEL
                         select MapConversations.Map(cx);
             return getCx;
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Conversation"></param>
         public void UpdateConversation(Conversations1 Conversation)
         {
             if (ADC.Conversations.Any(Cx => Cx.ID == Conversation.ID))
@@ -99,6 +112,21 @@ namespace AdviceLib.Repositories
                 Conv.ACCESS_LEVEL = Conversation.ACCESS_LEVEL;
                 ADC.Conversations.Update(Conv);
                 ADC.SaveChanges();
+            }
+        }
+
+        public void DeleteConversationByID(int id)
+        {
+            var Cus = ADC.Conversations.FirstOrDefault(Cx => Cx.ID == id);
+            if (Cus.ID == id)
+            {
+                ADC.Remove(Cus);
+                ADC.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine($"Cx with id {id} doesn't exist");
+                return;
             }
         }
     }

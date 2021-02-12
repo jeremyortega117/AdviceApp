@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>eb02a53f-fa79-46a1-bb56-f0e0e2d55152</UserSecretsId>
+    <AssemblyName>Advice</AssemblyName>
+    <RootNamespace>Advice</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
