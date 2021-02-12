@@ -51,7 +51,7 @@ namespace Advice.Controllers
         [HttpGet("{id}")]
         public Accounts1 Get(int id)
         {
-            return ACC.ReadInAccount(id);
+            return ACC.ReadInAccountByID(id);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Advice.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            ACC.DeleteAccount(id);
+            ACC.DeleteAccountByID(id);
         }
     }
 }

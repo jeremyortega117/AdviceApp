@@ -1,0 +1,6 @@
+Build Solution
+Open Package Manager Console on DataAccess Project
+Run : "Add-Migration"
+Run : "Update-Database"
+
+If the migration fails remove the previous migration under AdviceDB->Tables->dbo._EFMigrationsHistory
