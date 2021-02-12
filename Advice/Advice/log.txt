@@ -374,3 +374,17 @@ WHERE @@ROWCOUNT = 1 AND [ID] = scope_identity();
 2021-01-29 08:17:17.472 -06:00 [INF] Executed action Advice.Controllers.AccountsController.Post (Advice) in 3034.2938ms
 2021-01-29 08:17:17.473 -06:00 [INF] Executed endpoint 'Advice.Controllers.AccountsController.Post (Advice)'
 2021-01-29 08:17:17.478 -06:00 [INF] HTTP POST /api/Accounts?FNAME=harsha&LNAME=bavikati&PASSWORD=pass&ACCESS_LEVEL=12&EMAIL=hbavikati%40pbcmcorp.com&PHONE=1231237777&USERNAME=hbavikati&DEPT_ID=1 responded 200 in 3207.6427 ms
+2021-02-11 22:52:59.130 -06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2021-02-11 22:52:59.130 -06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2021-02-11 22:52:59.130 -06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2021-02-11 22:53:00.104 -06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2021-02-11 22:53:10.466 -06:00 [INF] Executing endpoint 'Advice.Controllers.AccountsController.Get (Advice)'
+2021-02-11 22:53:10.512 -06:00 [INF] Route matched with {action = "Get", controller = "Accounts"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[AdviceLib.Models.Accounts1] Get() on controller Advice.Controllers.AccountsController (Advice).
+2021-02-11 22:53:12.413 -06:00 [INF] Entity Framework Core 3.1.9 initialized 'AdviceDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2021-02-11 22:53:13.571 -06:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ID], [a].[ACCESS_LEVEL], [a].[DEPT_ID], [a].[EMAIL], [a].[FNAME], [a].[LNAME], [a].[PASSWORD], [a].[PHONE], [a].[USERNAME]
+FROM [Accounts] AS [a]
+2021-02-11 22:53:13.655 -06:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[AdviceLib.Models.Accounts1, AdviceLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-02-11 22:53:13.675 -06:00 [INF] Executed action Advice.Controllers.AccountsController.Get (Advice) in 3153.9247ms
+2021-02-11 22:53:13.676 -06:00 [INF] Executed endpoint 'Advice.Controllers.AccountsController.Get (Advice)'
+2021-02-11 22:53:13.679 -06:00 [INF] HTTP GET /api/Accounts responded 200 in 3252.7844 ms

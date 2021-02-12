@@ -24,7 +24,7 @@ namespace Advice
 
 
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.development.json")
                 .Build();
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(config)
